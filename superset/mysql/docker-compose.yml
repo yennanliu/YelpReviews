@@ -28,7 +28,8 @@ services:
       - "8088:8088"
     volumes:
       - ./superset_config.py:/etc/superset/superset_config.py
-    command: ["/bin/bash","-c","pip install","PyAthenaJDBC"]
+    #command: ["/bin/bash","-c","pip install","PyAthenaJDBC"]
+    # pip install --user PyAthenaJDBC PyAthenaJDBC[SQLAlchemy]
 volumes:
   mysql:
   redis:
