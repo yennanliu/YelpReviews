@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS yelp;
 -- Create yelp tip table 
 use yelp; 
 DROP TABLE IF EXISTS tip;
-CREATE TABLE review  (
+CREATE TABLE tip  (
      user_id CHAR(50),  
      business_id CHAR(50),   
      text  CHAR(100), 
