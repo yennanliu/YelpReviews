@@ -42,7 +42,7 @@ def get_column_names(line_contents, parent_key=''):
     These will be the column names for the eventual csv file.
     """
     column_names = []
-    for k, v in line_contents.iteritems():
+    for k, v in line_contents.items():
         column_name = "{0}.{1}".format(parent_key, k) if parent_key else k
         if isinstance(v, collections.MutableMapping):
             column_names.extend(
