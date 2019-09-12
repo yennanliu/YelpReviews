@@ -10,3 +10,4 @@ spark-warehouse
 .coverage
 logs/
 unittests.cfg
+data/*.json
