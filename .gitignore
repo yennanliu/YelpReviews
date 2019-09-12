@@ -1,0 +1,12 @@
+.creds.yml
+*.pyc
+*__pycache__
+*.DS_Store
+*.ipynb
+spark-warehouse
+*.class
+*.cache/
+*.log
+.coverage
+logs/
+unittests.cfg
