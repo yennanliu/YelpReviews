@@ -85,7 +85,8 @@ def get_row(line_contents, column_names):
                         column_name,
                         )
         if isinstance(line_value, str):
-            row.append('{0}'.format(line_value.encode('utf-8')))
+            #row.append('{0}'.format(line_value.encode('utf-8')))
+            row.append('"{}"'.format(str(line_value)))
         elif line_value is not None:
             row.append('{0}'.format(line_value))
         else:
