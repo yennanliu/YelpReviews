@@ -16,7 +16,7 @@ CREATE TABLE business  (
      stars INT, 
      review_count INT, 
      is_open BOOLEAN, 
-     attributes CHAR(100),  
+     attributes CHAR(255),  
      categories CHAR(100), 
      hours CHAR(255),  
      PRIMARY KEY (business_id)
