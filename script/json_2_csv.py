@@ -37,7 +37,7 @@ def read_yelp_json(path_to_json):
         df_review = read_yelp_json('yelp_academic_dataset_review.json')
     reference: https://www.reddit.com/r/MachineLearning/comments/33eglq/python_help_jsoncsv_pandas/
     """
-    with open(path_to_json, 'rb') as f:
+    with open(path_to_json, 'r') as f:
         data = f.readlines()
     data = map(lambda x: x.rstrip(), data)
     data_json_str = "[" + ','.join(data) + "]"
@@ -53,5 +53,8 @@ def read_yelp_review(path_to_json):
     df = pd.DataFrame([convert(line) for line in file(path_to_json)])
     return df
 
-path_to_json = 'yelp_academic_dataset_review.json'
-df_reivew = read_yelp_json(path_to_json)
+if __name__ == '__main__':
+    path_to_json = 'data/yelp_academic_dataset_review.json'
+    df_reivew = read_yelp_json(path_to_json)
+    print (df_reivew.head(10))
+    df_reivew.to_csv('review.csv')
