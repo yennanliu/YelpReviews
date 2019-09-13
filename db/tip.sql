@@ -10,5 +10,5 @@ CREATE TABLE tip  (
      text  CHAR(100), 
      date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
      compliment_count INT, 
-     PRIMARY KEY (review_id)
+     PRIMARY KEY (user_id)
         );

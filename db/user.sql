@@ -13,7 +13,7 @@ CREATE TABLE user  (
      funny INT NULL, 
      cool  INT NULL, 
      elite CHAR(100), 
-     friends CHAR(1024), 
+     friends CHAR(255), 
      fans INT NULL, 
      average_stars FLOAT NULL, 
      compliment_hot  INT NULL, 
