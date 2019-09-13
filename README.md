@@ -10,6 +10,9 @@ nano +18 alembic.ini
 alembic upgrade head
 # downgrade 
 alembic downgrade -1
+# create the other table 
+alembic revision -m "create checkin"
+
 
 ```
 
