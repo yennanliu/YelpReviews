@@ -27,7 +27,7 @@ def upgrade():
     sa.Column('funny', sa.Integer(),  nullable=False),
     sa.Column('cool', sa.Integer(),  nullable=False),
     sa.Column('text', sa.dialects.mysql.LONGTEXT()),
-    sa.Column('date', sa.TIMESTAMP(), autoincrement=False, nullable=True),
+    sa.Column('date', sa.String(30), autoincrement=False, nullable=True),
     sa.PrimaryKeyConstraint('review_id') 
     )
 
