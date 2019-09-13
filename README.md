@@ -2,7 +2,7 @@
 
 ### Quick start
 ```bash
-# db migration 
+# 1) db migration 
 alembic init --template generic ddl
 # update db creds
 nano +18 alembic.ini
@@ -14,6 +14,12 @@ alembic downgrade -1
 alembic revision -m "create table business"
 alembic revision -m "create table checkin"
 alembic revision -m "create table tip"
+
+# 2) Download / transform data
+# via kaggle 
+# json -> csv 
+python script/json_2_csv.py data/yelp_academic_dataset_user.json
+
 
 ```
 
