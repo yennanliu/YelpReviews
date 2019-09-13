@@ -6,7 +6,7 @@ use yelp;
 DROP TABLE IF EXISTS business;
 CREATE TABLE business  (
      business_id CHAR(50), 
-     name   CHAR(50), 
+     name   LONGTEXT,
      address CHAR(100), 
      city CHAR(100), 
      state CHAR(20), 
@@ -16,8 +16,8 @@ CREATE TABLE business  (
      stars INT, 
      review_count INT, 
      is_open BOOLEAN, 
-     attributes CHAR(255),  
-     categories CHAR(100), 
-     hours CHAR(255),  
+     attributes LONGTEXT,
+     categories LONGTEXT,
+     hours LONGTEXT,
      PRIMARY KEY (business_id)
         );
