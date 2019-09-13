@@ -1,5 +1,13 @@
 # YelpReviews
 
+### Quick start
+```bash
+# db migration 
+alembic init --template generic alembic
+# update db creds
+nano +18 alembic.ini
+```
+
 ### Ref
 - Yelp dataset 
 	- https://www.kaggle.com/yelp-dataset/yelp-dataset
