@@ -1,60 +1,114 @@
-  # reader function for Yelp to Pandas DataFrame format
-import os
-import json
-import pandas as pd
-from glob import glob
-
-def list_json(path):
-    """
-    Provide path to json folder
-    list all path
-    """
-    path_to_json = os.path.join(path, '*.json')
-    #path_to_json = '/YelpReviews/data/yelp_academic_dataset_review.json'
-    return glob(path_to_json)
+# -*- coding: utf-8 -*-
+"""Convert the Yelp Dataset Challenge dataset from json format to csv.
+For more information on the Yelp Dataset Challenge please visit http://yelp.com/dataset_challenge
+"""
+import argparse
+import collections
+import csv
+import simplejson as json
 
 
-def convert(x):
-    ''' Convert a json string to a flat python dictionary
-    which can be passed into Pandas.
-    reference: https://gist.github.com/paulgb/5265767
-    '''
-    ob = json.loads(x)
-    for k, v in ob.items():
-        if isinstance(v, list):
-            ob[k] = ','.join(v)
-        elif isinstance(v, dict):
-            for kk, vv in v.items():
-                ob['%s_%s' % (k, kk)] = vv
-            del ob[k]
-    return ob
+def read_and_write_file(json_file_path, csv_file_path, column_names):
+    """Read in the json dataset file and write it out to a csv file, given the column names."""
+    with open(csv_file_path, 'w') as fout:
+        csv_file = csv.writer(fout)
+        csv_file.writerow(list(column_names))
+        with open(json_file_path) as fin:
+            for line in fin:
+                line_contents = json.loads(line)
+                csv_file.writerow(get_row(line_contents, column_names))
 
+def get_superset_of_column_names_from_file(json_file_path):
+    """Read in the json dataset file and return the superset of column names."""
+    column_names = set()
+    with open(json_file_path) as fin:
+        for line in fin:
+            line_contents = json.loads(line)
+            column_names.update(
+                    set(get_column_names(line_contents).keys())
+                    )
+    return column_names
 
-def read_yelp_json(path_to_json):
-    """
-    Read json file and return as Pandas DataFrame
+def get_column_names(line_contents, parent_key=''):
+    """Return a list of flattened key names given a dict.
     Example:
-        df_review = read_yelp_json('yelp_academic_dataset_review.json')
-    reference: https://www.reddit.com/r/MachineLearning/comments/33eglq/python_help_jsoncsv_pandas/
+        line_contents = {
+            'a': {
+                'b': 2,
+                'c': 3,
+                },
+        }
+        will return: ['a.b', 'a.c']
+    These will be the column names for the eventual csv file.
     """
-    with open(path_to_json, 'r') as f:
-        data = f.readlines()
-    data = map(lambda x: x.rstrip(), data)
-    data_json_str = "[" + ','.join(data) + "]"
-    df = pd.read_json(data_json_str)
-    return df
+    column_names = []
+    for k, v in line_contents.items():
+        column_name = "{0}.{1}".format(parent_key, k) if parent_key else k
+        if isinstance(v, collections.MutableMapping):
+            column_names.extend(
+                    get_column_names(v, column_name).items()
+                    )
+        else:
+            column_names.append((column_name, v))
+    return dict(column_names)
 
+def get_nested_value(d, key):
+    """Return a dictionary item given a dictionary `d` and a flattened key from `get_column_names`.
+    
+    Example:
+        d = {
+            'a': {
+                'b': 2,
+                'c': 3,
+                },
+        }
+        key = 'a.b'
+        will return: 2
+    
+    """
+    if '.' not in key:
+        if key not in d:
+            return None
+        return d[key]
+    base_key, sub_key = key.split('.', 1)
+    if base_key not in d:
+        return None
+    sub_dict = d[base_key]
+    return get_nested_value(sub_dict, sub_key)
 
-def read_yelp_review(path_to_json):
-    """
-    Read Yelp review data and return as Pandas DataFrame
-    reference: https://gist.github.com/paulgb/5265767
-    """
-    df = pd.DataFrame([convert(line) for line in file(path_to_json)])
-    return df
+def get_row(line_contents, column_names):
+    """Return a csv compatible row given column names and a dict."""
+    row = []
+    for column_name in column_names:
+        line_value = get_nested_value(
+                        line_contents,
+                        column_name,
+                        )
+        if isinstance(line_value, str):
+            row.append('{0}'.format(line_value.encode('utf-8')))
+        elif line_value is not None:
+            row.append('{0}'.format(line_value))
+        else:
+            row.append('')
+    return row
 
 if __name__ == '__main__':
-    path_to_json = 'data/yelp_academic_dataset_review.json'
-    df_reivew = read_yelp_json(path_to_json)
-    print (df_reivew.head(10))
-    df_reivew.to_csv('review.csv')
+    """Convert a yelp dataset file from json to csv."""
+
+    parser = argparse.ArgumentParser(
+            description='Convert Yelp Dataset Challenge data from JSON format to CSV.',
+            )
+
+    parser.add_argument(
+            'json_file',
+            type=str,
+            help='The json file to convert.',
+            )
+
+    args = parser.parse_args()
+
+    json_file = args.json_file
+    csv_file = '{0}.csv'.format(json_file.split('.json')[0])
+
+    column_names = get_superset_of_column_names_from_file(json_file)
+    read_and_write_file(json_file, csv_file, column_names)
