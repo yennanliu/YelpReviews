@@ -20,19 +20,19 @@ def upgrade():
     op.create_table(
     'business',
     sa.Column('business_id', sa.String(100), primary_key=True),
-    sa.Column('name', sa.VARCHAR(length=1024), nullable=False),
+    sa.Column('name', sa.VARCHAR(length=2048), nullable=False),
     sa.Column('address', sa.String(length=100), nullable=False),
     sa.Column('city', sa.String(length=100), nullable=False),
     sa.Column('state', sa.String(length=20), nullable=False),
     sa.Column('postal_code', sa.String(length=50), nullable=False),
-    sa.Column('latitude', sa.DECIMAL(precision=10, scale=0), nullable=False),
-    sa.Column('longitude', sa.DECIMAL(precision=10, scale=0), nullable=False),
+    sa.Column('latitude', sa.String(length=20), nullable=False),
+    sa.Column('longitude', sa.String(length=20), nullable=False),
     sa.Column('stars', sa.Integer(), nullable=False),
     sa.Column('review_count', sa.Integer(), nullable=False),
     sa.Column('is_open', sa.BOOLEAN(), nullable=False),
-    sa.Column('attributes', sa.VARCHAR(length=1024), nullable=False),
-    sa.Column('categories', sa.VARCHAR(length=1024), nullable=False),
-    sa.Column('hours',sa.VARCHAR(length=1024), nullable=False),
+    sa.Column('attributes', sa.VARCHAR(length=2048), nullable=False),
+    sa.Column('categories', sa.VARCHAR(length=2048), nullable=False),
+    sa.Column('hours',sa.VARCHAR(length=2048), nullable=False),
     sa.PrimaryKeyConstraint('business_id') 
     )
 

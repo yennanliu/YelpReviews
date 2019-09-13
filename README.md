@@ -6,6 +6,11 @@
 alembic init --template generic alembic
 # update db creds
 nano +18 alembic.ini
+# upgrade 
+alembic upgrade head
+# downgrade 
+alembic downgrade -1
+
 ```
 
 ### Ref
