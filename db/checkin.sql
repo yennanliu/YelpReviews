@@ -6,6 +6,6 @@ use yelp;
 DROP TABLE IF EXISTS checkin;
 CREATE TABLE checkin  (
      business_id CHAR(50), 
-     date  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+     date  LONGTEXT, 
      PRIMARY KEY (business_id)
         );
