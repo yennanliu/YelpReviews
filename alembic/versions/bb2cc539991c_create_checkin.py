@@ -17,7 +17,7 @@ depends_on = None
 
 
 def upgrade():
-        op.create_table(
+    op.create_table(
     'checkin',
     sa.Column('business_id', sa.String(100), primary_key=True),
     sa.Column('date', sa.dialects.mysql.LONGTEXT(), nullable=False),

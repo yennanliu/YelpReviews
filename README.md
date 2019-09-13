@@ -11,8 +11,8 @@ alembic upgrade head
 # downgrade 
 alembic downgrade -1
 # create the other table 
-alembic revision -m "create checkin"
-
+alembic revision -m "create table checkin"
+alembic revision -m "create table tip"
 
 ```
 
