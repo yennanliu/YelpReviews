@@ -15,25 +15,19 @@ def get_conn(mysql_config):
                  cursorclass=pymysql.cursors.DictCursor)
     return connection
 
-def insert(df):
+def insert_to_table(df,tablename,connection):
     """
     insert data to mysql 
     """
+    cols = "`,`".join([str(i) for i in df.columns.tolist()])
+    for i,row in df.iterrows():
     try:
         with connection.cursor() as cursor:
-            # Create a new record
-            sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
-            cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
-
-        # connection is not autocommit by default. So you must commit to save
-        # your changes.
+        sql = "INSERT INTO tablename (`" +cols + "`) VALUES (" + "%s,"*(len(row)-1) + "%s)"
+        cursor.execute(sql, tuple(row))
         connection.commit()
-        # with connection.cursor() as cursor:
-        #     # Read a single record
-        #     sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
-        #     cursor.execute(sql, ('webmaster@python.org',))
-        #     result = cursor.fetchone()
-        #     print(result)
+    except Exception as e:
+        print (e, 'insert failed')
     finally:
         connection.close()
 
