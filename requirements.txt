@@ -1,3 +1,4 @@
 alembic
 pymysql
 pandas 
+kaggle-cli
