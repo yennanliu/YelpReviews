@@ -1,29 +1,33 @@
 # YelpReviews
 
 ### Quick start
+<details>
+<summary>Quick start</summary>
+
 ```bash
-# 1) db migration 
+# STEP 1) db migration 
 alembic init --template generic ddl
 # update db creds
 nano +18 alembic.ini
 # upgrade 
 alembic upgrade head
-# downgrade 
-alembic downgrade -1
-# create the other table 
-alembic revision -m "create table business"
-alembic revision -m "create table checkin"
-alembic revision -m "create table tip"
 
-# 2) Download / transform data
+# STEP 2) Download / transform data
 # via kaggle 
+# dev 
 # json -> csv 
-python script/json_2_csv.py data/yelp_academic_dataset_user.json
+bash transform_all_json_2_csv.sh 
 
+# STEP 3) dump data into mysql 
 
 ```
+</details>
+
 
 ### Ref
+<details>
+<summary>Ref</summary>
+
 - Yelp dataset 
 	- https://www.kaggle.com/yelp-dataset/yelp-dataset
 	- https://www.yelp.com/dataset/documentation/main
@@ -33,3 +37,4 @@ python script/json_2_csv.py data/yelp_academic_dataset_user.json
 	- https://medium.com/payscale-tech/how-to-get-apache-superset-to-connect-to-athena-6d9b56bec7fb
 - alembic mysql migration 
 	 - https://michaelheap.com/alembic-python-migrations-quick-start/
+</details>
