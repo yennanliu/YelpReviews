@@ -37,4 +37,6 @@ $ bash script/transform_all_json_2_csv.sh
 	- https://medium.com/payscale-tech/how-to-get-apache-superset-to-connect-to-athena-6d9b56bec7fb
 - alembic mysql migration 
 	 - https://michaelheap.com/alembic-python-migrations-quick-start/
+- Redash docker
+	- https://github.com/kakakakakku/redash-hands-on
 </details>
