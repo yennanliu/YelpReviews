@@ -1,4 +1,4 @@
-# YelpReviews
+# [YelpReviews](https://www.kaggle.com/yelp-dataset/yelp-dataset)
 
 ### Quick start
 <details>
@@ -14,12 +14,12 @@ $ alembic upgrade head
 
 # STEP 2) Download / transform data
 # via kaggle 
-# dev 
+$ bash script/download_all_json.sh 
 # json -> csv 
 $ bash transform_all_json_2_csv.sh 
 
 # STEP 3) dump data into mysql 
-
+# dev 
 ```
 </details>
 
