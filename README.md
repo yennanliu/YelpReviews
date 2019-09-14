@@ -6,17 +6,17 @@
 
 ```bash
 # STEP 1) db migration 
-alembic init --template generic ddl
+$ alembic init --template generic ddl
 # update db creds
-nano +18 alembic.ini
+$ nano +18 alembic.ini
 # upgrade 
-alembic upgrade head
+$ alembic upgrade head
 
 # STEP 2) Download / transform data
 # via kaggle 
 # dev 
 # json -> csv 
-bash transform_all_json_2_csv.sh 
+$ bash transform_all_json_2_csv.sh 
 
 # STEP 3) dump data into mysql 
 

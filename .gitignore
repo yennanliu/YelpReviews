@@ -11,3 +11,8 @@ spark-warehouse
 logs/
 unittests.cfg
 data/*.json
+data/yelp_academic_dataset_review.csv
+data/yelp_academic_dataset_user.csv
+yelp_academic_dataset_tip.csv
+yelp_academic_dataset_business.csv
+yelp_academic_dataset_checkin.csv
