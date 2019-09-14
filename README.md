@@ -16,7 +16,7 @@ $ alembic upgrade head
 # via kaggle 
 $ bash script/download_all_json.sh 
 # json -> csv 
-$ bash transform_all_json_2_csv.sh 
+$ bash script/transform_all_json_2_csv.sh 
 
 # STEP 3) dump data into mysql 
 # dev 
