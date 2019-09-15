@@ -6,14 +6,16 @@
 
 SELECT b.name,
        b.city,
+       b.categories, 
        b.review_count,
-       r.start_sum as start_sum,
-       b.business_id AS business_id_b,
+       b.stars as stars, 
+       r.review_start_sum as review_start_sum,
+       --b.business_id AS business_id_b,
        r.business_id
 FROM business b
 INNER JOIN
   (SELECT business_id AS business_id,
-          sum(stars) as start_sum
+          sum(stars) as review_start_sum
    FROM review
    GROUP BY 1
    ORDER BY 2 DESC
