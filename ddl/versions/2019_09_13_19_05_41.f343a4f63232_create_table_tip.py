@@ -23,7 +23,7 @@ def upgrade():
     sa.Column('user_id', sa.String(100)),
     sa.Column('business_id', sa.String(100)),
     sa.Column('text', sa.dialects.mysql.LONGTEXT()),
-    sa.Column('date', sa.TIMESTAMP(), autoincrement=False, nullable=True),
+    sa.Column('date', sa.String(50), nullable=True),
     sa.Column('compliment_count', sa.Integer()),
     sa.PrimaryKeyConstraint('tip_id') 
     )
