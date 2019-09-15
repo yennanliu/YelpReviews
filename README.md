@@ -20,6 +20,10 @@ $ bash script/transform_all_json_2_csv.sh
 
 # STEP 3) dump data into mysql 
 # dev 
+
+# STEP 4) spark etl
+docker build spark/. -t spark_env
+docker run --mount type=bind,source="$(pwd)"/.,target=/home/ -it <container_id> bash 
 ```
 </details>
 
