@@ -6,11 +6,11 @@
 
 1. Fork the repo :  `git clone https://github.com/yennanliu/YelpReviews.git`
 2. Download [Kaggle dataset](https://www.kaggle.com/yelp-dataset/yelp-dataset) and and save at [data file](https://github.com/yennanliu/YelpReviews/tree/master/data)
-3. Download/launch mysql server local (for development)
+3. Download/launch mysql server local, and create a database `yelp` (for development)
 4. Set up AWS RDS mysql database (for prodution, `optional`)
 5. Modify [mysql db config](https://github.com/yennanliu/YelpReviews/blob/master/config/mysql.config) with yours 
 6. Modify [RDS mysql db config](https://github.com/yennanliu/YelpReviews/blob/master/config/mysql_rds.config) with yours  (`optional`)
-7. Modify DB connection (e,g, `sqlalchemy.url = mysql+pymysql://mysql_user:0000@localhost/yelp`)in [alembic.ini](https://github.com/yennanliu/YelpReviews/blob/master/alembic.ini) with yours 
+7. Modify DB connection (e.g. `sqlalchemy.url = <your_mysql_url>`)in [alembic.ini](https://github.com/yennanliu/YelpReviews/blob/master/alembic.ini) with yours 
 </details>
 
 ### Quick start
@@ -18,24 +18,15 @@
 <summary>Quick start</summary>
 
 ```bash
+# STEP 0) install libraries 
+$ cd ~ && cd YelpReviews && git install -r requirements.txt 
 # STEP 1) db migration 
-$ alembic init --template generic ddl
-# update db creds
-$ nano +18 alembic.ini
-# upgrade 
-$ alembic upgrade head
-
-# STEP 2) Download / transform data
-# via kaggle 
-$ bash script/download_all_json.sh 
-# json -> csv 
-$ bash script/transform_all_json_2_csv.sh 
-
-# STEP 3) dump data into mysql 
-# dev 
-
-# STEP 4) spark etl
-docker build spark/. -t spark_env
+$ alembic init --template generic ddl &&  alembic upgrade head
+# STEP 2) data preprocess 
+$ bash script/transform_all_json_2_csv.sh  # json to csv 
+# csv -> mysql 
+# STEP 3) spark etl
+docker build spark/. -t spark_env 
 # access spark shell 
 #docker run --mount type=bind,source="$(pwd)"/.,target=/YelpReviews -it <container_id>  bash
 # run etl via spark-submit
