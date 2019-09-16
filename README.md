@@ -1,5 +1,18 @@
 # [YelpReviews](https://www.kaggle.com/yelp-dataset/yelp-dataset)
 
+### Prerequisites
+<details>
+<summary>Prerequisites</summary>
+
+1. Fork the repo :  `git clone https://github.com/yennanliu/YelpReviews.git`
+2. Download [Kaggle dataset](https://www.kaggle.com/yelp-dataset/yelp-dataset) and and save at [data file](https://github.com/yennanliu/YelpReviews/tree/master/data)
+3. Download/launch mysql server local (for development)
+4. Set up AWS RDS mysql database (for prodution, `optional`)
+5. Modify [mysql db config](https://github.com/yennanliu/YelpReviews/blob/master/config/mysql.config) with yours 
+6. Modify [RDS mysql db config](https://github.com/yennanliu/YelpReviews/blob/master/config/mysql_rds.config) with yours  (`optional`)
+7. Modify DB connection (e,g, `sqlalchemy.url = mysql+pymysql://mysql_user:0000@localhost/yelp`)in [alembic.ini](https://github.com/yennanliu/YelpReviews/blob/master/alembic.ini) with yours 
+</details>
+
 ### Quick start
 <details>
 <summary>Quick start</summary>
