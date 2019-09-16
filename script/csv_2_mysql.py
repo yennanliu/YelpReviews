@@ -46,7 +46,7 @@ def insert_to_table(df,table_name,connection):
                 connection.commit()
                 print ('insert ok')
         except Exception as e:
-            print (e, 'insert failed')
+            print (e, 'insert failed', i, row)
     connection.close()
     cursor.close()
 
