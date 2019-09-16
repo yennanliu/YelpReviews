@@ -66,8 +66,8 @@ def get_nested_value(d, key):
         will return: 2
     
     """
-    if '.' not in key:
-        if key not in d:
+    if '.' not in key: 
+        if key not in d: # to fix when d is None error :  TypeError: argument of type 'NoneType' is not iterable error 
             return None
         return d[key]
     base_key, sub_key = key.split('.', 1)
