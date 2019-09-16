@@ -28,10 +28,7 @@ $ bash script/transform_all_json_2_csv.sh  # json to csv
 $ bash script/all_csv_2_mysql.sh
 # STEP 3) spark etl
 $ docker build spark/. -t spark_env 
-# access spark shell 
-#docker run --mount type=bind,source="$(pwd)"/.,target=/YelpReviews -it <container_id>  bash
-# run etl via spark-submit
-$ docker run --mount type=bind,source="$(pwd)"/.,target=/YelpReviews -it <container_id>  /bin/bash -c 'cd ../../YelpReviews && spark-submit etl/etl_digest_business.py'
+$ bash etl/run_etl_digest_business.sh
 ```
 </details>
 
