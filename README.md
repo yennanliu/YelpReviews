@@ -21,7 +21,7 @@
 # STEP 0) install libraries 
 $ cd ~ && cd YelpReviews && git install -r requirements.txt 
 # STEP 1) db migration 
-$ alembic init --template generic ddl &&  alembic upgrade head
+$ alembic init --template generic ddl &&  alembic upgrade head  # downgrade : $ alembic downgrade -1 
 # STEP 2) data preprocess 
 $ bash script/transform_all_json_2_csv.sh  # json to csv 
 # csv -> mysql 
