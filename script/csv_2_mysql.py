@@ -51,6 +51,7 @@ def insert_to_table(df,table_name,connection):
     cursor.close()
 
 def main(csv_name, table_name):
+    print ('>>>>> process : {} --> {}'.format(csv_name, table_name))
     mysql_config = parse_config('config/mysql.config')
     conn = get_conn(mysql_config)
     df = pd.read_csv(csv_name, index_col=False)
