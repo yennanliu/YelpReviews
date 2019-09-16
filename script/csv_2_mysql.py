@@ -9,6 +9,16 @@ from utility import *
 def generate_id(x):
     return str(uuid.uuid4())
 
+def fix_csv_form(df, csv_name):
+    """
+    fix csv form, make it dump to mysql OK 
+    """
+    if 'Unnamed: 0' in df.columns: del df['Unnamed: 0']  # remove 'Unnamed: 0' at df here, will fix this workaround later
+    if csv_name=='data/yelp_academic_dataset_tip.csv':   # for yelp_academic_dataset_tip.csv, generate tip_id as primary key,  will fix this workaround later
+        df['tip_id'] = df['user_id'].map(generate_id) 
+        return df
+    return df 
+
 def get_conn(mysql_config):
     """
     Connect to the database
@@ -44,8 +54,8 @@ def main(csv_name, table_name):
     mysql_config = parse_config('config/mysql.config')
     conn = get_conn(mysql_config)
     df = pd.read_csv(csv_name, index_col=False)
-    del df['Unnamed: 0']
-    insert_to_table(df.head(10),table_name, conn)
+    df = fix_csv_form(df, csv_name)
+    insert_to_table(df,table_name, conn)
 
 if __name__ == '__main__':
     main(sys.argv[1], sys.argv[2])
