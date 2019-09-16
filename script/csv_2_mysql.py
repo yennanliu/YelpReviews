@@ -2,24 +2,26 @@ import sys
 sys.path.append("./script/")
 import pandas as pd 
 import pymysql
+import uuid 
 # UDF 
 from utility import * 
 
+def generate_id(x):
+    return str(uuid.uuid4())
 
 def get_conn(mysql_config):
     """
     Connect to the database
     """
-    # will replace with mysql_config soon 
     connection = pymysql.connect(host=mysql_config['host'],
-                 user=mysql_config['user'],
-                 password=mysql_config['password'],
-                 db=mysql_config['dbname'],
-                 charset='utf8mb4',
-                 cursorclass=pymysql.cursors.DictCursor)
+     user=mysql_config['user'],
+     password=mysql_config['password'],
+     db=mysql_config['dbname'],
+     charset='utf8mb4',
+     cursorclass=pymysql.cursors.DictCursor)
     return connection
 
-def insert_to_table(df,tablename,connection):
+def insert_to_table(df,table_name,connection):
     """
     insert data to mysql 
     """
@@ -28,20 +30,22 @@ def insert_to_table(df,tablename,connection):
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO {} (`" +cols + "`) VALUES (" + "%s,"*(len(row)-1) + "%s)"
-                sql = sql.format(tablename)
+                sql = sql.format(table_name)
                 #print (sql)
-                print ('insert ok')
                 cursor.execute(sql, tuple(row))
                 connection.commit()
+                print ('insert ok')
         except Exception as e:
             print (e, 'insert failed')
     connection.close()
     cursor.close()
 
+def main(csv_name, table_name):
+    mysql_config = parse_config('config/mysql.config')
+    conn = get_conn(mysql_config)
+    df = pd.read_csv(csv_name, index_col=False)
+    del df['Unnamed: 0']
+    insert_to_table(df.head(10),table_name, conn)
 
-# mysql_config = parse_config('config/mysql.config')
-# print (mysql_config)
-# conn = get_conn(mysql_config)
-# df = pd.read_csv('data/business_sample.csv')
-# del df['Unnamed: 0']
-# insert_to_table(df.head(10),'business2', conn )
+if __name__ == '__main__':
+    main(sys.argv[1], sys.argv[2])
