@@ -16,3 +16,4 @@ data/yelp_academic_dataset_user.csv
 yelp_academic_dataset_tip.csv
 yelp_academic_dataset_business.csv
 yelp_academic_dataset_checkin.csv
+config/mysql_rds.config
