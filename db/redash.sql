@@ -9,13 +9,13 @@ SELECT b.name,
        b.categories, 
        b.review_count,
        b.stars as stars, 
-       r.review_start_sum as review_start_sum,
+       r.review_star_sum as review_star_sum,
        --b.business_id AS business_id_b,
        r.business_id
 FROM business b
 INNER JOIN
   (SELECT business_id AS business_id,
-          sum(stars) as review_start_sum
+          sum(stars) as review_star_sum
    FROM review
    GROUP BY 1
    ORDER BY 2 DESC
@@ -25,7 +25,7 @@ LIMIT 100;
 ---------   2) top_riview_categories 
 
 SELECT b.categories as categories,
-       sum(r.stars) AS review_start_sum
+       sum(r.stars) AS review_stars_sum
 FROM review r
 INNER JOIN business b ON REPLACE(r.business_id, '"', '') = b.business_id
 GROUP BY 1
@@ -105,7 +105,8 @@ limit 1000 ;
 
 select 
 substring_index(categories,',',1) as categories_, 
-count(*)
+count(*) businss_count,
+avg(stars) as avg_star
 from 
 business
 group by 1 order by 2 desc 
@@ -121,7 +122,7 @@ business
 group by 1 order by 2 desc 
  limit 10 ;
 
----------   9) top business count by type  by city 
+---------   10) top business count by type  by city 
 
 SELECT
     substring_index(categories,',',1) as categories_,  
@@ -138,4 +139,13 @@ SELECT
 FROM business
 GROUP BY 1 limit 100;
 
+
+--#########################
+-- checkin    
+--#########################
+
+
+--#########################
+-- tip    
+--#########################
 
