@@ -1,17 +1,17 @@
 # [YelpReviews](https://www.kaggle.com/yelp-dataset/yelp-dataset)
 
 ### INTRO 
+> Build a POC data app that start from data source to final application.
+Process : `data collect ` -> `data process` -> `db modeling` -> -> `data storage` -> `etl` -> `data analysis / ML ` -> `data visualization` 
+
+* Tech : Python 3 , Pyspark, Mysql/AWS RDS S3, Redash, Alembic, Docker 
+* data process  : [transform_all_json_2_csv.sh](https://github.com/yennanliu/YelpReviews/blob/master/script/transform_all_json_2_csv.sh)
+* db modeling  : [Alembic ddl](https://github.com/yennanliu/YelpReviews/tree/master/ddl)
+* data storage : [all_csv_2_mysql.sh](https://github.com/yennanliu/YelpReviews/blob/master/script/all_csv_2_mysql.sh)
+* etl  : [spark etl](https://github.com/yennanliu/YelpReviews/tree/master/etl)
+* analysis/data visualization  : [redash](https://app.redash.io/yen_dev/dashboard/yelp-dashboard)
 
 ### Framework
-
-### Tech
-- Python 3 
-- pyspark batch 
-- Mysql / S3 RDS Mysql
-- AWS S3 
-- Redash
-- Alembic
-- Docker 
 
 ### DB model 
 
@@ -84,4 +84,6 @@ $ bash etl/run_etl_digest_business.sh
 	 - https://michaelheap.com/alembic-python-migrations-quick-start/
 - Redash docker
 	- https://github.com/kakakakakku/redash-hands-on
+- ML : Yelp review star prediction 
+	 - https://github.com/ahegel/yelp-dataset/blob/master/Predicting%20Star%20Ratings.ipynb
 </details>
