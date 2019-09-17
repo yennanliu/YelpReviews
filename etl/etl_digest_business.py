@@ -15,7 +15,12 @@ sc = SparkContext.getOrCreate()
 sqlContext = pyspark.sql.SQLContext(sc)
 spark = SparkSession(sc)
 
-if __name__ == '__main__':
+def main():
+    """
+    ETL get users' friend count 
+    : input  :  json 
+    : output :  spark dataframe
+    """
     filename = "data/yelp_academic_dataset_business.json"
     DF = spark.read.json(filename)
     DF.printSchema()
@@ -27,3 +32,6 @@ if __name__ == '__main__':
     #bizrdd.map(lambda x : [x['city']] ).take(10)
     bizrdd.map(lambda x : (x['city'],1) )\
           .reduceByKey(lambda a, b : a+b).take(10)
+
+if __name__ == '__main__':
+    main()
