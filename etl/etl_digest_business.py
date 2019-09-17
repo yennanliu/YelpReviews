@@ -27,11 +27,23 @@ def main():
     DF.createOrReplaceTempView("biz")
     # SQL statements can be run by using the sql methods provided by spark
     bizDF = spark.sql("SELECT * from biz limit 10")
-    bizDF.show()
+    #bizDF.show()
     bizrdd = DF.rdd 
     #bizrdd.map(lambda x : [x['city']] ).take(10)
-    bizrdd.map(lambda x : (x['city'],1) )\
-          .reduceByKey(lambda a, b : a+b).take(10)
+    cols = ['biz_id', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] 
+    hours_df = bizrdd.map(lambda x : [x['business_id'],x['hours']])\
+             .filter(lambda x : x[1]!=None)\
+             .map(lambda x : 
+             [x[0], 
+             x[1]['Monday'],
+             x[1]['Tuesday'],
+             x[1]['Wednesday'],
+             x[1]['Thursday'],
+             x[1]['Friday'],
+             x[1]['Saturday'],
+             x[1]['Sunday']])\
+              .toDF(cols)
+    print(hours_df.show())
 
 if __name__ == '__main__':
     main()
