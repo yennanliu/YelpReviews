@@ -12,9 +12,14 @@ Process : `data collect ` -> `data process` -> `db modeling` -> -> `data storage
 * analysis/data visualization  : [redash](https://app.redash.io/yen_dev/dashboard/yelp-dashboard)
 
 ### Framework
+<img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/framework.png" width="800" height="400">
 
 ### DB model 
-<img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/db_model.png" width="800" height="400">
+<img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/dash.png" width="800" height="400">
+
+### Visualization  
+<img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/framework.png" width="800" height="400">
+
 
 ### File structure 
 
@@ -69,6 +74,8 @@ $ bash etl/run_etl_digest_business.sh
 </details>
 
 ### Development
+
+### TODO 
 
 ### Ref
 <details>
