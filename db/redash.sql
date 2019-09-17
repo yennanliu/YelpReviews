@@ -2,27 +2,26 @@
 -- review  
 --#########################
 
----------  1) top_riview_restaurants 
+---------  1) RESTAURANT WITH BEST REVIEW 
 
 SELECT b.name,
        b.city,
-       b.categories, 
        b.review_count,
-       b.stars as stars, 
-       r.review_star_sum as review_star_sum,
-       --b.business_id AS business_id_b,
-       r.business_id
+       b.stars AS stars,
+       r.review_star_sum AS review_star_sum,
+       b.categories AS categories
 FROM business b
 INNER JOIN
   (SELECT business_id AS business_id,
-          sum(stars) as review_star_sum
+          sum(stars) AS review_star_sum
    FROM review
    GROUP BY 1
    ORDER BY 2 DESC
    LIMIT 100) r ON REPLACE(r.business_id, '"', '') = b.business_id
+ORDER BY 3,4
 LIMIT 100;
 
----------   2) top_riview_categories 
+---------   2) TOP REVIEW CATEGORIES 
 
 SELECT b.categories as categories,
        sum(r.stars) AS review_stars_sum
@@ -44,22 +43,21 @@ ORDER BY 2 DESC
 LIMIT 100 ;
 
 
----------   4) review over time 
+---------   4) REVIEW OVER TIME  
 
 SELECT 
-substring(date, 1, 5) as month, 
+substring(date, 1, 5) as year, 
 count(*) as review_count 
 FROM review r 
 group by 1 
 order by 1 
 limit 100 ;
 
-
 --#########################
 -- user   
 --#########################
 
----------   5) new joined user 
+---------   5) NEW JOINED USER 
 
 SELECT 
 substring(yelping_since, 1, 5) as joined_month, 

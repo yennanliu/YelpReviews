@@ -9,9 +9,8 @@
 - pyspark batch 
 - Mysql / S3 RDS Mysql
 - AWS S3 
-- Mysql
 - Redash
-- alembic
+- Alembic
 - Docker 
 
 ### DB model 
