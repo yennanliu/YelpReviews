@@ -13,7 +13,8 @@ spark = SparkSession(sc)
 
 def main():
     """
-    ETL get business' open hours (dict -> dataframe columns) 
+    ETL get business' open hours  (dict -> dataframe columns) 
+    ETL get business' attribution (dict -> dataframe columns) 
     : input  :  json 
     : output :  spark dataframe
     """
@@ -40,7 +41,7 @@ def main():
              x[1]['Sunday']])\
              .toDF(cols)
     print(hours_df.show())
-    # >>>> get business attrition 
+    # >>>> get business attribution 
     attr_ = bizrdd.map(lambda x : x['attributes'])\
                   .map(lambda x : x.asDict())\
                   .take(1)
@@ -49,7 +50,7 @@ def main():
     attr_rdd = bizrdd.map(lambda x : x['attributes'])\
           .filter(lambda x : x != None)\
           .map(lambda x : x.asDict())
-    # workaround here : enlarge sampleRatio in order to sample more RDD to "guess" dstaframe shema,
+    # workaround here : enlarge sampleRatio in order to sample more RDD to "guess" dataframe schema,
     # the formal method is : define schema explicitly 
     # https://stackoverflow.com/questions/36902665/saving-a-list-of-rows-to-a-hive-table-in-pyspark
     attr_df = attr_rdd.toDF(attr_col,sampleRatio=0.2)
