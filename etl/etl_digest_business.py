@@ -1,13 +1,9 @@
-
 import sys
 sys.path.append("./utility/")
 import os
 import pyspark
-import math 
-from datetime import datetime
-from pyspark.sql import SQLContext, Row
+from pyspark.sql import SQLContext
 from pyspark import SparkContext
-from pyspark.sql import functions as F
 from pyspark.sql.session import SparkSession
 
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages com.amazonaws:aws-java-sdk-pom:1.7.4,org.apache.hadoop:hadoop-aws:2.7.6 pyspark-shell'
@@ -17,7 +13,7 @@ spark = SparkSession(sc)
 
 def main():
     """
-    ETL get users' friend count 
+    ETL get business' open hours (dict -> dataframe columns) 
     : input  :  json 
     : output :  spark dataframe
     """
@@ -42,7 +38,7 @@ def main():
              x[1]['Friday'],
              x[1]['Saturday'],
              x[1]['Sunday']])\
-              .toDF(cols)
+             .toDF(cols)
     print(hours_df.show())
 
 if __name__ == '__main__':
