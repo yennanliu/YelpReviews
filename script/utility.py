@@ -29,3 +29,13 @@ def replace_envvars_with_vals(dic):
                 command = "echo {}".format(val)
                 dic[el] = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE).stdout.read().strip()
     return dic
+
+
+def spark_save_to_mysql(dataFrame, table_name, config):
+    mysql_config = parse_config(config)
+    dataFrame.write.format('jdbc').options(
+        url=mysql_config['url'],
+        driver=mysql_config['driver'],
+        dbtable=table_name,
+        user=mysql_config['user'],
+        password=mysql_config['password']).mode('append').save()
