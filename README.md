@@ -14,7 +14,7 @@ Process : `data collect ` -> `data process` -> `db modeling` -> -> `data storage
 ### Framework
 
 ### DB model 
-<img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/db_model.png" width="800" height="400">
+<img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/dbmodel.png" width="800" height="400">
 
 ### File structure 
 

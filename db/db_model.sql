@@ -3,7 +3,7 @@
 //// -- LEVEL 1
 
 TABLE business  as B {
-     business_id  CHAR [ref: > R.business_id] 
+     business_id  varchar [ref: > R.business_id] 
      name   LONGTEX 
      address CHAR
      city CHAR
@@ -20,8 +20,8 @@ TABLE business  as B {
         }
         
 TABLE checkin  as C {
-     user_id varchar 
-     business_id varchar  [ref: > R.business_id] 
+     user_id varchar    [ref: > R.user_id] 
+     business_id varchar  
      date  timestamp
         }
          
