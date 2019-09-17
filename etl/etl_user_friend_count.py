@@ -14,7 +14,6 @@ sc = SparkContext.getOrCreate()
 sqlContext = pyspark.sql.SQLContext(sc)
 spark = SparkSession(sc)
 
-
 def main():
     """
     ETL get users' friend count 
@@ -26,17 +25,15 @@ def main():
     DF.printSchema()
     DF.createOrReplaceTempView("user")
     # SQL statements can be run by using the sql methods provided by spark
-    userDF = spark.sql("SELECT * from user limit 100")
+    #userDF = spark.sql("SELECT * from user limit 100")
+    userDF = spark.sql("SELECT * from user")
     #userDF.show()
     user_rdd = userDF.rdd 
-
     friend_rdd = user_rdd.map(lambda x : [ x['user_id'], x['friends']] )\
                          .map(lambda x : [x[0], len(x[1].split(','))])
-
     print (friend_rdd.take(30))
     friend_df =  friend_rdd.toDF(['user_id','friend_count'])
     friend_df.show()
 
 if __name__ == '__main__':
     main()
-

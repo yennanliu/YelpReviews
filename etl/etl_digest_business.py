@@ -23,7 +23,8 @@ def main():
     DF.printSchema()
     DF.createOrReplaceTempView("biz")
     # SQL statements can be run by using the sql methods provided by spark
-    bizDF = spark.sql("SELECT * from biz limit 10")
+    #bizDF = spark.sql("SELECT * from biz limit 10")
+    bizDF = spark.sql("SELECT * from biz")
     #bizDF.show()
     bizrdd = DF.rdd 
     # >>>> get business work hours 
@@ -46,7 +47,6 @@ def main():
                   .map(lambda x : x.asDict())\
                   .take(1)
     attr_col = list([ i.keys() for i in attr_ ][0])
-
     attr_rdd = bizrdd.map(lambda x : x['attributes'])\
           .filter(lambda x : x != None)\
           .map(lambda x : x.asDict())
