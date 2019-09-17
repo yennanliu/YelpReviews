@@ -1,8 +1,15 @@
 # [YelpReviews](https://www.kaggle.com/yelp-dataset/yelp-dataset)
 
-### Intro
+### INTRO 
+
+### Framework
+
+### DB model 
 
 ### File structure 
+<details>
+<summary>Prerequisites</summary>
+
 ```
 ├── README.md
 ├── alembic.ini      : configuration for alembic DB version control
@@ -19,6 +26,8 @@
 └── superset         : Dockerfile superset env (BI tool)
 
 ```
+</details>
+
 ### Prerequisites
 <details>
 <summary>Prerequisites</summary>
@@ -51,6 +60,7 @@ $ bash etl/run_etl_digest_business.sh
 ```
 </details>
 
+### Development
 
 ### Ref
 <details>
