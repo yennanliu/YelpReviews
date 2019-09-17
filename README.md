@@ -1,5 +1,24 @@
 # [YelpReviews](https://www.kaggle.com/yelp-dataset/yelp-dataset)
 
+### Intro
+
+### File structure 
+```
+├── README.md
+├── alembic.ini      : configuration for alembic DB version control
+├── config           : configuration  for database, RDS, s3...
+├── data             : file saved Yelp dataset
+├── db               : sql for redash dashboard, and analysis 
+├── ddl              : alembic database migration (ddl/versions)
+├── doc              : file for documentation 
+├── etl              : Main ETL scripts 
+├── redash           : Dockerfile redash env (BI tool)
+├── requirements.txt : Needed python libraries 
+├── script           : Scripts run data preprocess 
+├── spark            : Dockerfile build spark env 
+└── superset         : Dockerfile superset env (BI tool)
+
+```
 ### Prerequisites
 <details>
 <summary>Prerequisites</summary>
