@@ -25,7 +25,7 @@ def main():
     bizDF = spark.sql("SELECT * from biz limit 10")
     #bizDF.show()
     bizrdd = DF.rdd 
-    #bizrdd.map(lambda x : [x['city']] ).take(10)
+    # >>>> get business work hours 
     cols = ['biz_id', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] 
     hours_df = bizrdd.map(lambda x : [x['business_id'],x['hours']])\
              .filter(lambda x : x[1]!=None)\
@@ -40,6 +40,20 @@ def main():
              x[1]['Sunday']])\
              .toDF(cols)
     print(hours_df.show())
+    # >>>> get business attrition 
+    attr_ = bizrdd.map(lambda x : x['attributes'])\
+                  .map(lambda x : x.asDict())\
+                  .take(1)
+    attr_col = list([ i.keys() for i in attr_ ][0])
+
+    attr_rdd = bizrdd.map(lambda x : x['attributes'])\
+          .filter(lambda x : x != None)\
+          .map(lambda x : x.asDict())
+    # workaround here : enlarge sampleRatio in order to sample more RDD to "guess" dstaframe shema,
+    # the formal method is : define schema explicitly 
+    # https://stackoverflow.com/questions/36902665/saving-a-list-of-rows-to-a-hive-table-in-pyspark
+    attr_df = attr_rdd.toDF(attr_col,sampleRatio=0.2)
+    print (attr_df.show())
 
 if __name__ == '__main__':
     main()
