@@ -20,19 +20,24 @@ TABLE business  as B {
         }
         
 TABLE checkin  as C {
-     user_id varchar    [ref: > R.user_id] 
-     business_id varchar  
+     business_id varchar  [ref: > B.business_id] 
      date  timestamp
         }
          
 TABLE tip  as T {
-     user_id varchar [ref: > R.user_id] 
+     user_id varchar  
      business_id varchar  
      text  varchar
      date timestamp
      compliment_count int 
         }
-      
+        
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one
+Ref: T.user_id > USER.user_id  
+Ref: T.business_id > B.business_id  
+
 TABLE user  as USER {
      user_id varchar [ref: > R.user_id] 
      name   varchar
@@ -70,11 +75,12 @@ TABLE review  as R {
      date timestamp
      }
      
+//----------------------------------------------//
 //// -- LEVEL 2 
 
-TABLE user_friend  {
+TABLE user_attr  {
      user_id varchar [ref: > USER.user_id] 
-     friend_count int 
+     friends_count int 
         }
         
 TABLE business_attr  {
