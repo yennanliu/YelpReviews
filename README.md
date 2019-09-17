@@ -2,7 +2,9 @@
 
 ### INTRO 
 > Build a POC data app that start from data source to final application.
-Process : `data collect ` -> `data process` -> `db modeling` -> `data storage` -> `etl` -> `data analysis / ML ` -> `data visualization` 
+Process : `data collect ` -> `data process` -> `db modeling` -> `data storage` -> `ETL` -> `data analysis / ML ` -> `data visualization`. This project will focus 
+on :  1) database modeling / schema design (per business understanding, use cases) 2) data process 3) analysis that extract business insights 4) framework
+design logic (why this database, why this schema, why this BI tool..)
 
 * Tech : Python 3 , Pyspark, Mysql/AWS RDS S3, Redash, Alembic, Docker 
 * data process  : [transform_all_json_2_csv.sh](https://github.com/yennanliu/YelpReviews/blob/master/script/transform_all_json_2_csv.sh)
@@ -74,15 +76,18 @@ $ bash etl/run_etl_digest_business.sh
 </details>
 
 ### Development
+<details>
+<summary>Development</summary>
 - `dev` 
+</details> 
+
 
 ### TODO 
-
 <details>
 <summary>TODO</summary>
-1. Add tests 
-2. Dockerize all end to end applications (can run all functionalities offline)
-3. Tune spark code raise IO efficiency
+- Add tests 
+- Dockerize all end to end applications (can run all functionalities offline)
+- Tune spark code raise IO efficiency
 </details> 
 
 ### Ref
