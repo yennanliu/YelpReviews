@@ -78,6 +78,7 @@ $ bash etl/run_etl_digest_business.sh
 ### Development
 <details>
 <summary>Development</summary>
+
 - `dev` 
 </details> 
 
@@ -85,6 +86,7 @@ $ bash etl/run_etl_digest_business.sh
 ### TODO 
 <details>
 <summary>TODO</summary>
+
 - Add tests 
 - Dockerize all end to end applications (can run all functionalities offline)
 - Tune spark code raise IO efficiency
