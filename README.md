@@ -4,11 +4,19 @@
 
 ### Framework
 
+### Tech
+- Python 3 
+- pyspark batch 
+- Mysql / S3 RDS Mysql
+- AWS S3 
+- Mysql
+- Redash
+- alembic
+- Docker 
+
 ### DB model 
 
 ### File structure 
-<details>
-<summary>Prerequisites</summary>
 
 ```
 ├── README.md
@@ -26,7 +34,7 @@
 └── superset         : Dockerfile superset env (BI tool)
 
 ```
-</details>
+
 
 ### Prerequisites
 <details>
