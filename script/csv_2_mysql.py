@@ -7,6 +7,9 @@ import uuid
 from utility import * 
 
 def generate_id(x):
+    """
+    generate tip id from user id, since tip id not exists in orgin data  
+    """
     return str(uuid.uuid4())
 
 def fix_csv_form(df, csv_name):
@@ -33,7 +36,7 @@ def get_conn(mysql_config):
 
 def insert_to_table(df,table_name,connection):
     """
-    insert data to mysql 
+    auto visit columns in dataframe, parse row data, and insert to mysql 
     """
     cols = "`,`".join([str(i) for i in df.columns.tolist()])
     for i,row in df.iterrows():
@@ -51,6 +54,11 @@ def insert_to_table(df,table_name,connection):
     cursor.close()
 
 def main(csv_name, table_name):
+    """
+    python function load csv, fix csv form, and dump fixed csv data into mysql  
+    : input  : pandas dataframe 
+    : output : mysql data 
+    """
     print ('>>>>> process : {} --> {}'.format(csv_name, table_name))
     mysql_config = parse_config('config/mysql.config')
     conn = get_conn(mysql_config)
