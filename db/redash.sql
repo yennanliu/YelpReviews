@@ -97,11 +97,21 @@ limit 1000 ;
 -- limit 1000 ;
 
 
+---------   6) TOTAL USER COUNT 
+
+SELECT 
+COUNT(user_id) as all_user_count 
+sum( case 1 when DATE_ADD( now( ) , INTERVAL -1 MONTH ) else 0 end  ) as last_month_joined_user_count
+ FROM user; 
+
+
+
+
 --#########################
 -- business    
 --#########################
 
----------   7) business count by type 
+---------   7) BUSINESS COUNT BY TYPE BY TYPE  
 
 select 
 substring_index(categories,',',1) as categories_, 
@@ -112,7 +122,7 @@ business
 group by 1 order by 2 desc 
  limit 10 ;
 
----------   8) business count by city 
+---------   8) BUSINESS COUNT  BY CITY 
 
 select 
 city as city, 
@@ -122,14 +132,13 @@ business
 group by 1 order by 2 desc 
  limit 10 ;
 
----------   10) top business count by type  by city 
+---------   10) TOP BUSINESS COUNT BY TYPE BY CITY
 
 SELECT
     substring_index(categories,',',1) as categories_,  
     count(case when city = 'Las Vegas' then 1 else NULL END ) as 'Las Vegas',
     count(case when city = 'Toronto' then 1 else NULL END ) as 'Toronto',
     count(case when city = 'Charlotte' then 1 else NULL END ) as 'Charlotte',
-    count(case when city = 'Toronto' then 1 else NULL END ) as 'Toronto',
     count(case when city = 'Scottsdale' then 1 else NULL END ) as 'Scottsdale',
     count(case when city = 'Calgary' then 1 else NULL END ) as 'Calgary',
     count(case when city = 'Pittsburgh' then 1 else NULL END ) as 'Pittsburgh',
@@ -138,6 +147,24 @@ SELECT
     count(case when city = 'Henderson' then 1 else NULL END ) as 'Henderson'
 FROM business
 GROUP BY 1 limit 100;
+
+
+---------   10)  BUSINESS LOCATIONS 
+
+SELECT 
+name, 
+latitude,
+longitude
+FROM business
+limit 10000;
+
+
+---------   11)  TOTAL BUSINESS COUNT  
+
+SELECT 
+COUNT(business_id) as all_buiness_count ,
+sum(case when is_open = 1 then 1 else 0 end ) as open_buiness_count
+ FROM business; 
 
 
 --#########################
