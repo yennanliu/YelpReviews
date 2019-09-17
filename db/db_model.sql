@@ -1,6 +1,6 @@
-//// -- LEVEL 1
 //// -- Tables and References
 //// https://dbdiagram.io/d
+//// -- LEVEL 1
 
 TABLE business  as B {
      business_id  CHAR [ref: > R.business_id] 
@@ -69,3 +69,15 @@ TABLE review  as R {
      text  varchar 
      date timestamp
      }
+     
+//// -- LEVEL 2 
+
+TABLE user_friend  {
+     user_id varchar [ref: > USER.user_id] 
+     friend_count int 
+        }
+        
+TABLE business_attr  {
+     business_id varchar [ref: > B.business_id] 
+     attributes DICT 
+        }
