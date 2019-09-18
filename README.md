@@ -109,4 +109,7 @@ $ bash etl/run_etl_digest_business.sh
 	- https://github.com/kakakakakku/redash-hands-on
 - ML : Yelp review star prediction 
 	 - https://github.com/ahegel/yelp-dataset/blob/master/Predicting%20Star%20Ratings.ipynb
+- Yelp dataset db model design
+	- https://paulx-cn.github.io/blog/6th_Blog/
+
 </details>
