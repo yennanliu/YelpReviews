@@ -45,13 +45,16 @@ LIMIT 100 ;
 
 ---------   4) REVIEW OVER TIME  
 
-SELECT 
-substring(date, 1, 5) as year, 
-count(*) as review_count 
-FROM review r 
-group by 1 
-order by 1 
-limit 100 ;
+SELECT substring(date, 1, 5) AS MONTH,
+       count(review_id) AS review_count,
+       count(DISTINCT user_id) AS user_did_review,
+       count(DISTINCT business_id) AS reivewed_business
+FROM review r
+GROUP BY 1
+ORDER BY 1
+LIMIT 100 ;
+
+
 
 --#########################
 -- user   
@@ -177,12 +180,34 @@ GROUP BY 1,
          
 ---------   10)  BUSINESS LOCATIONS 
 
-SELECT 
-name, 
-latitude,
-longitude
+-- SELECT 
+-- name, 
+-- latitude,
+-- longitude
+-- FROM business
+-- limit 10000;
+
+
+
+SELECT name,
+       CASE
+           WHEN stars = '5.0'
+                OR stars = '4.5' THEN '5'
+           WHEN stars = '4.0'
+                OR stars = '3.5' THEN '4'
+           WHEN stars = '3.0'
+                OR stars = '2.5' THEN '3'
+           WHEN stars = '2.0'
+                OR stars = '1.5' THEN '2'
+           WHEN stars = '1.0' THEN '1'
+           ELSE 'else'
+       END AS group_,
+       latitude,
+       longitude
 FROM business
-limit 10000;
+LIMIT 100000;
+
+
 
 
 ---------   11)  TOTAL BUSINESS COUNT  
