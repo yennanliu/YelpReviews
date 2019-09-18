@@ -120,6 +120,8 @@ business
 group by 1 order by 2 desc 
  limit 10 ;
 
+
+
 ---------   8) BUSINESS COUNT  BY CITY 
 
 select 
@@ -132,21 +134,47 @@ group by 1 order by 2 desc
 
 ---------   10) TOP BUSINESS COUNT BY TYPE BY CITY
 
-SELECT
-    substring_index(categories,',',1) as categories_,  
-    count(case when city = 'Las Vegas' then 1 else NULL END ) as 'Las Vegas',
-    count(case when city = 'Toronto' then 1 else NULL END ) as 'Toronto',
-    count(case when city = 'Charlotte' then 1 else NULL END ) as 'Charlotte',
-    count(case when city = 'Scottsdale' then 1 else NULL END ) as 'Scottsdale',
-    count(case when city = 'Calgary' then 1 else NULL END ) as 'Calgary',
-    count(case when city = 'Pittsburgh' then 1 else NULL END ) as 'Pittsburgh',
-    count(case when city = 'Montréal' then 1 else NULL END ) as 'Montréal',
-    count(case when city = 'Mesa' then 1 else NULL END ) as 'Mesa',
-    count(case when city = 'Henderson' then 1 else NULL END ) as 'Henderson'
+-- SELECT
+--     substring_index(categories,',',1) as categories_,  
+--     count(case when city = 'Las Vegas' then 1 else NULL END ) as 'Las Vegas',
+--     count(case when city = 'Toronto' then 1 else NULL END ) as 'Toronto',
+--     count(case when city = 'Charlotte' then 1 else NULL END ) as 'Charlotte',
+--     count(case when city = 'Scottsdale' then 1 else NULL END ) as 'Scottsdale',
+--     count(case when city = 'Calgary' then 1 else NULL END ) as 'Calgary',
+--     count(case when city = 'Pittsburgh' then 1 else NULL END ) as 'Pittsburgh',
+--     count(case when city = 'Montréal' then 1 else NULL END ) as 'Montréal',
+--     count(case when city = 'Mesa' then 1 else NULL END ) as 'Mesa',
+--     count(case when city = 'Henderson' then 1 else NULL END ) as 'Henderson'
+-- FROM business
+-- GROUP BY 1 limit 100;
+
+
+SELECT city,
+       substring_index(categories,',',1) AS categories,
+       COUNT(*)
 FROM business
-GROUP BY 1 limit 100;
-
-
+WHERE city IN
+    (SELECT city
+     FROM
+       (SELECT city,
+               count(*) AS COUNT
+        FROM business
+        GROUP BY 1
+        ORDER BY 2 DESC
+        LIMIT 10) sub)
+  AND categories IN
+    (SELECT categories
+     FROM
+       (SELECT substring_index(categories,',',1) AS categories,
+               count(*) AS COUNT
+        FROM business
+        GROUP BY 1
+        ORDER BY 2 DESC
+        LIMIT 10) sub)
+  AND categories IS NOT NULL
+GROUP BY 1,
+         2;
+         
 ---------   10)  BUSINESS LOCATIONS 
 
 SELECT 
