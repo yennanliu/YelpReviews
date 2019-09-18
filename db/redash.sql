@@ -55,7 +55,6 @@ ORDER BY 1
 LIMIT 100 ;
 
 
-
 --#########################
 -- user   
 --#########################
@@ -104,8 +103,6 @@ SELECT
 COUNT(user_id) as all_user_count 
 sum( case 1 when DATE_ADD( now( ) , INTERVAL -1 MONTH ) else 0 end  ) as last_month_joined_user_count
  FROM user; 
-
-
 
 
 --#########################
@@ -206,8 +203,6 @@ SELECT name,
        longitude
 FROM business
 LIMIT 100000;
-
-
 
 
 ---------   11)  TOTAL BUSINESS COUNT  
