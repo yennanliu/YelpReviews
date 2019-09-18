@@ -19,6 +19,15 @@ design logic (why this database, why this schema, why this BI tool..)
 ### DB model 
 <img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/db_model.png" width="800" height="400">
 
+### DB model V2 
+<details>
+<summary>DB model V2</summary>
+
+<img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/db_model_V2.png" width="800" height="400">
+
+</details> 
+
+
 ### Visualization  
 <img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/dash.png" width="800" height="400">
 
@@ -72,6 +81,8 @@ $ bash script/all_csv_2_mysql.sh
 # STEP 3) spark etl
 $ docker build spark/. -t spark_env 
 $ bash etl/run_etl_digest_business.sh
+$ bash etl/etl_user_friend_count.sh
+
 ```
 </details>
 
