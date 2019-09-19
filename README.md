@@ -6,27 +6,29 @@ Process : `data collect ` -> `data process` -> `db modeling` -> `data storage` -
 on :  1) database modeling / schema design (per business understanding, use cases) 2) data process 3) analysis that extract business insights 4) framework
 design logic (why this database, why this schema, why this BI tool..)
 
-* Tech : Python 3 , Pyspark, Mysql/AWS RDS S3, Redash, Alembic, Docker 
-* data process  : [transform_all_json_2_csv.sh](https://github.com/yennanliu/YelpReviews/blob/master/script/transform_all_json_2_csv.sh)
-* db modeling  : [Alembic ddl](https://github.com/yennanliu/YelpReviews/tree/master/ddl)
-* data storage : [all_csv_2_mysql.sh](https://github.com/yennanliu/YelpReviews/blob/master/script/all_csv_2_mysql.sh)
-* etl  : [spark etl](https://github.com/yennanliu/YelpReviews/tree/master/etl)
-* analysis/data visualization  : [redash](https://app.redash.io/yen_dev/public/dashboards/xpfG9wKgb9qEcMHlGiSpjhFn8dCZuun8XbCN52GN)
+* Tech : Python 3, Pyspark, Mysql/AWS RDS S3, Redash, Alembic, Docker 
+* Data process  : [transform_all_json_2_csv.sh](https://github.com/yennanliu/YelpReviews/blob/master/script/transform_all_json_2_csv.sh)
+* DB modeling  : [Alembic ddl](https://github.com/yennanliu/YelpReviews/tree/master/ddl)
+* Data storage : [all_csv_2_mysql.sh](https://github.com/yennanliu/YelpReviews/blob/master/script/all_csv_2_mysql.sh)
+* ETL  : [spark etl](https://github.com/yennanliu/YelpReviews/tree/master/etl)
+* Analysis/data visualization  : [redash dashboard](https://app.redash.io/yen_dev/public/dashboards/xpfG9wKgb9qEcMHlGiSpjhFn8dCZuun8XbCN52GN)
+* Presentation  : [YelpReview_DS_demo](https://github.com/yennanliu/YelpReviews/blob/master/doc/YelpReview_DS_demo.pdf)
 
 ### Framework
 <img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/framework.png" width="800" height="400">
 
-### DB model 
+
+### DB model  
+<details>
+<summary>DB model</summary>
+
+#### DB model 
 <img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/db_model.png" width="800" height="400">
 
-### DB model V2 
-<details>
-<summary>DB model V2</summary>
-
+#### DB model V2
 <img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/db_model_V2.png" width="800" height="400">
 
 </details> 
-
 
 ### Visualization  
 <details>
