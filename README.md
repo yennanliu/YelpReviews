@@ -29,8 +29,12 @@ design logic (why this database, why this schema, why this BI tool..)
 
 
 ### Visualization  
+<details>
+<summary>Visualization</summary>
+
 <img src ="https://github.com/yennanliu/YelpReviews/blob/master/doc/dash.png" width="800" height="400">
 
+</details>
 
 ### File structure 
 
