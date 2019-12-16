@@ -26,10 +26,11 @@ def get_conn(mysql_config):
     """
     Connect to the database
     """
-    connection = pymysql.connect(host=mysql_config['host'],
-     user=mysql_config['user'],
-     password=mysql_config['password'],
-     db=mysql_config['dbname'],
+    config = parse_config(mysql_config)
+    connection = pymysql.connect(host=config['host'],
+     user=config['user'],
+     password=config['password'],
+     db=config['dbname'],
      charset='utf8mb4',
      cursorclass=pymysql.cursors.DictCursor)
     return connection
