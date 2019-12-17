@@ -1,3 +1,4 @@
+import logging
 import os
 import pyspark
 from pyspark.sql import SQLContext
@@ -9,4 +10,15 @@ def get_SparkSession():
     sc = SparkContext.getOrCreate()
     sqlContext = pyspark.sql.SQLContext(sc)
     spark = SparkSession(sc) 
-    return sc, spark 
+    return sc, sqlContext, spark 
+
+def suppress_py4j_logging():
+    logger = logging.getLogger("py4j")
+    logger.setLevel(logging.WARN)
+
+def create_pyspark_session():
+    return (SparkSession.builder
+            .master("local[2]")
+            .appName("my-local-pyspark-context")
+            .enableHiveSupport()
+            .getOrCreate())

@@ -26,8 +26,9 @@ def test_insert_to_table():
     pass 
 
 def test_get_SparkSession():
+    # https://stackoverflow.com/questions/40975360/testing-spark-with-pytest-cannot-run-spark-in-local-mode
     # https://blog.cambridgespark.com/unit-testing-with-pyspark-fb31671b1ad8
-    mysc, myspark = get_SparkSession_()
+    mysc, mysqlContext, myspark = get_SparkSession_()
     testRDD = myspark.sparkContext.parallelize(["cat dog mouse","cat cat dog"], 2)
     assert testRDD.count() == 2 
 
